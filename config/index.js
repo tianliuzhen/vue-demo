@@ -10,7 +10,29 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable:{
+      '/api': {
+        target: 'http://localhost:8080/authorize/userInfo', //你要访问的服务器域名
+        changeOrigin: true, //允许跨域
+        pathRewrite: {
+          '^/api': ''
+        }
+      },
+      '/oauth':{
+        target:'http://localhost:8080',
+        changeOrigin: true,
+        pathRewrite:{
+          '^/oauth': '/'
+        }
+      },
+      '/test':{
+        target:'http://localhost:8086',
+        changeOrigin: true,
+        pathRewrite:{
+          '^/test': '/test'
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: '0.0.0.0', // can be overwritten by process.env.HOST
@@ -37,6 +59,11 @@ module.exports = {
   },
 
   build: {
+    prodEnv: require('./prod.env'), // 线上环境
+    testEnv: require('./test.env'), // 测试环境
+
+
+
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
 

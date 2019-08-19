@@ -3,7 +3,7 @@
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <h1>
-      <router-link to="a">跳转至</router-link>
+      <router-link to="testUrl">跳转至简单的axios</router-link>
     </h1>
     <ul>
       <li>
