@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import HelloWorld from '@/components/test/HelloWorld'
 import lalala from '@/components/test/lalala'
-import vue from '@/components/vue'
+import Home from '@/home/index'
+import Page1 from '@/home/page1'
+import Page2 from '@/home/page2'
+import Page3 from '@/home/page3'
 Vue.use(Router)
 
 export default new Router({
@@ -16,7 +19,7 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       // 跳转路径
-      redirect: "testUrl",
+      redirect: "home",
       component: HelloWorld
     },
     {
@@ -28,18 +31,14 @@ export default new Router({
       path: '/login',
       component: () => import('@/login/login'),
       hidden: true
-    }/*,
-    {
-      path: '/redirect',
-      component: Layout,
-      hidden: true,
-      children: [
-        {
-          path: '/redirect/:path*',
-          component: () => import('@/redirect/index')
-        }
-      ]
-    },*/
+    },
+    { path: '/home',
+      name: 'home',
+      component: Home,
+      children:[
+        { path: '/Page1', name: 'Page1', component: Page1 },
+        { path: '/Page2', name: 'Page2', component: Page2 },
+        { path: '/Page3', name: 'Page3', component: Page3 } ] }
   ],
   // mode:"history"    // mode 设置为history ，去掉地址栏上的 # 号
 })
